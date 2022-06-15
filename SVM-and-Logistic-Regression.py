@@ -46,9 +46,9 @@ print(x_train)
 # Train
 clf = LogisticRegression()
 clf = clf.fit(x_train,y_train)
-
 x_test,y_test = get_features_and_target_arrays(data_test, numerical_cols,scaler)
 test_pred = clf.predict(x_test)
+test_pred_LRC = clf.decision_function(x_test)
 print(mean_squared_error(y_test, test_pred))
 print(accuracy_score(y_test, test_pred))
 
@@ -60,6 +60,7 @@ clf1 = SVC()
 clf1.fit(x_train,y_train)
 x_test1,y_test1 = get_features_and_target_arrays(data_test, numerical_cols,scaler)
 test_pred1 = clf1.predict(x_test1)
+test_pred_SVC = clf1.decision_function(x_test)
 print(mean_squared_error(y_test, test_pred1))
 print(accuracy_score(y_test, test_pred1))
 print(confusion_matrix(y_test, test_pred1))
