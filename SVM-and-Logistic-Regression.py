@@ -65,3 +65,17 @@ print(mean_squared_error(y_test, test_pred1))
 print(accuracy_score(y_test, test_pred1))
 print(confusion_matrix(y_test, test_pred1))
 print(roc_auc_score(y_test,test_pred1))
+
+logistic_fpr,logistic_tpr, threshold = roc_curve(y_test,test_pred_LRC)
+auc_LRC = auc(logistic_fpr,logistic_tpr)
+SVC_fpr,SVC_tpr, threshold = roc_curve(y_test,test_pred_SVC)
+auc_SVC=auc(SVC_fpr,SVC_tpr)
+
+plt.figure(figsize = (5,5), dpi=100)
+plt.plot(SVC_fpr,SVC_tpr, linestyle ='-', label = 'SVM(auc = %0.3f)'%auc_SVC)
+plt.plot(logistic_fpr,logistic_tpr,linestyle ='-', label = 'LRC(auc = %0.3f)'%auc_LRC )
+plt.xlabel("False positive rate")
+plt.ylabel("True positive rate")
+plt.legend()
+plt.show()
+
